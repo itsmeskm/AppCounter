@@ -1,23 +1,30 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, Button} from 'react-native';
 
-const Screen1 = ({navigation, route}) => {
+const Screen2 = ({navigation, route}) => {
   let count = route.params;
-  if (!count) {
-    count = 0;
-  }
+
+  // console.log(count, 'flag');
   const [counter, setCounter] = useState(count);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    setPaused(false);
+  }, [count]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCounter(prevCounter => prevCounter + 1);
+      if (!paused) {
+        setCounter(prevCounter => prevCounter + 1);
+      }
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [paused]);
 
   const handleNavigate = () => {
     navigation.navigate('Screen3', counter);
+    setPaused(true);
   };
   const handleGoBack = () => {
     navigation.navigate('Screen1');
@@ -33,4 +40,4 @@ const Screen1 = ({navigation, route}) => {
   );
 };
 
-export default Screen1;
+export default Screen2;

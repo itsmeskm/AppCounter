@@ -15,7 +15,7 @@ const Screen3 = ({navigation, route}) => {
   }, []);
 
   const handleGoBack = () => {
-    navigation.navigate('Screen2', count);
+    navigation.navigate('Screen2', counter);
   };
 
   const handleGoToScreen1 = () => {

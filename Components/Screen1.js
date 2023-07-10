@@ -5,7 +5,7 @@ const Screen1 = ({navigation}) => {
   const [counter, setCounter] = useState(0);
 
   const handleNavigate = () => {
-    navigation.navigate('Screen2');
+    navigation.navigate('Screen2', counter);
     setCounter(0);
   };
 
